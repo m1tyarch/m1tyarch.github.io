@@ -39,6 +39,7 @@ body {
   color: var(--text-main);
 }
 
+/* Градиент для ПК */
 body::before {
   content: "";
   position: fixed;
@@ -289,6 +290,7 @@ button:focus-visible {
 
 @media (max-width: 760px) {
   .page {
+    /* Отступ сверху для контента с учетом вырезов экранов (челки) */
     padding: calc(34px + env(safe-area-inset-top, 0px)) 0 72px;
   }
 
@@ -306,29 +308,28 @@ button:focus-visible {
     margin-top: 26px;
   }
 
-  /* Настройки горизонтального скролла для проектов */
   .projects-grid {
     grid-template-columns: none;
     grid-auto-flow: column;
     grid-auto-columns: 80%;
     overflow-x: auto;
     gap: 1.4rem;
-    padding-bottom: 1rem; /* Отступ снизу для комфортного свайпа */
+    padding-bottom: 1rem;
     scroll-snap-type: x mandatory;
-    scrollbar-width: none; /* Скрывает скроллбар в Firefox */
-    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
   }
 
   .projects-grid::-webkit-scrollbar {
-    display: none; /* Скрывает скроллбар в Chrome/Safari */
+    display: none;
   }
 
   .project-item {
-    scroll-snap-align: start; /* Карточка прилипает к левому краю при скролле */
+    scroll-snap-align: start;
   }
 
   .project-item p {
-    max-width: none; /* Убирает ограничение ширины текста для мобильных карточек */
+    max-width: none;
   }
 
   .connect-links-row {
@@ -336,14 +337,9 @@ button:focus-visible {
     flex-direction: column;
   }
 
+  /* Отключение градиента и полоски на мобильных */
   body::before {
-    height: calc(85px + env(safe-area-inset-top, 0px));
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--bg-rgb), 1) 0%,
-      rgba(var(--bg-rgb), 1) calc(45px + env(safe-area-inset-top, 0px)),
-      rgba(var(--bg-rgb), 0) 100%
-    );
+    display: none;
   }
 }
 
