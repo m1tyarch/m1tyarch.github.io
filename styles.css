@@ -290,7 +290,6 @@ button:focus-visible {
 
 @media (max-width: 760px) {
   .page {
-    /* Отступ сверху для контента с учетом вырезов экранов (челки) */
     padding: calc(34px + env(safe-area-inset-top, 0px)) 0 72px;
   }
 
@@ -308,16 +307,27 @@ button:focus-visible {
     margin-top: 26px;
   }
 
+  /* Горизонтальный скролл проектов для мобильных */
   .projects-grid {
-    grid-template-columns: none;
-    grid-auto-flow: column;
-    grid-auto-columns: 80%;
+    display: flex;
+    flex-direction: row;
     overflow-x: auto;
     gap: 1.4rem;
     padding-bottom: 1rem;
+    
+    /* Очень узкий градиент по бокам (6px), чтобы не задевать текст слева */
+    -webkit-mask-image: linear-gradient(to right, transparent 0px, black 6px, black calc(100% - 6px), transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0px, black 6px, black calc(100% - 6px), transparent 100%);
+    
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
+  }
+
+  /* Невидимое пространство справа для правильного выравнивания 3-го проекта */
+  .projects-grid::after {
+    content: "";
+    flex: 0 0 20%;
   }
 
   .projects-grid::-webkit-scrollbar {
@@ -325,7 +335,9 @@ button:focus-visible {
   }
 
   .project-item {
+    flex: 0 0 80%;
     scroll-snap-align: start;
+    /* Карточки без фона и обводок (исходный вид) */
   }
 
   .project-item p {
@@ -337,7 +349,7 @@ button:focus-visible {
     flex-direction: column;
   }
 
-  /* Отключение градиента и полоски на мобильных */
+  /* Отключение верхнего градиента и полоски на мобильных */
   body::before {
     display: none;
   }
