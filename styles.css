@@ -57,6 +57,19 @@ body::before {
   );
 }
 
+/* --- Block Fade-in Animations --- */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+/* --------------------------------- */
+
 .container {
   width: min(92vw, var(--container));
   margin: 0 auto;
@@ -85,8 +98,26 @@ body::before {
   color: var(--text-main);
 }
 
+.lang-toggle {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-left: auto;
+  color: var(--text-muted);
+  font-family: "Ubuntu", sans-serif;
+  font-size: 0.92rem;
+  cursor: pointer;
+  transition: color var(--motion-duration) var(--motion-ease);
+}
+
+.lang-toggle:hover {
+  color: var(--text-main);
+}
+
 .intro {
   padding: 8px 0 10px;
+  opacity: 0;
+  animation: fadeInUp 0.7s var(--motion-ease) forwards;
 }
 
 h1,
@@ -103,7 +134,7 @@ h1 {
   margin-bottom: 1rem;
 }
 
-h1 span {
+h1 .handle {
   color: var(--text-muted);
   font-size: 0.58em;
   font-weight: 500;
@@ -122,7 +153,14 @@ h1 span {
   margin-top: 34px;
   content-visibility: auto;
   contain-intrinsic-size: 1px 520px;
+  opacity: 0;
+  animation: fadeInUp 0.7s var(--motion-ease) forwards;
 }
+
+.section:nth-of-type(1) { animation-delay: 0.15s; }
+.section:nth-of-type(2) { animation-delay: 0.3s; }
+.section:nth-of-type(3) { animation-delay: 0.45s; }
+.section:nth-of-type(4) { animation-delay: 0.6s; }
 
 .section h2 {
   font-size: clamp(1.2rem, 2.6vw, 1.5rem);
@@ -229,7 +267,8 @@ h1 span {
   margin: 0;
 }
 
-a:focus-visible {
+a:focus-visible,
+button:focus-visible {
   outline: 2px solid #dfe2e6;
   outline-offset: 2px;
 }
@@ -250,14 +289,14 @@ a:focus-visible {
 
 @media (max-width: 760px) {
   .page {
-    padding: 34px 0 72px;
+    padding: calc(34px + env(safe-area-inset-top, 0px)) 0 72px;
   }
 
   .top-nav {
     margin-bottom: 1.6rem;
   }
 
-  h1 span {
+  h1 .handle {
     display: block;
     margin: 0.3rem 0 0;
   }
@@ -267,18 +306,44 @@ a:focus-visible {
     margin-top: 26px;
   }
 
+  /* Настройки горизонтального скролла для проектов */
   .projects-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: none;
+    grid-auto-flow: column;
+    grid-auto-columns: 80%;
+    overflow-x: auto;
     gap: 1.4rem;
+    padding-bottom: 1rem; /* Отступ снизу для комфортного свайпа */
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none; /* Скрывает скроллбар в Firefox */
+    -webkit-overflow-scrolling: touch; /* Плавный скролл на iOS */
+  }
+
+  .projects-grid::-webkit-scrollbar {
+    display: none; /* Скрывает скроллбар в Chrome/Safari */
+  }
+
+  .project-item {
+    scroll-snap-align: start; /* Карточка прилипает к левому краю при скролле */
   }
 
   .project-item p {
-    max-width: 58ch;
+    max-width: none; /* Убирает ограничение ширины текста для мобильных карточек */
   }
 
   .connect-links-row {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  body::before {
+    height: calc(85px + env(safe-area-inset-top, 0px));
+    background: linear-gradient(
+      to bottom,
+      rgba(var(--bg-rgb), 1) 0%,
+      rgba(var(--bg-rgb), 1) calc(45px + env(safe-area-inset-top, 0px)),
+      rgba(var(--bg-rgb), 0) 100%
+    );
   }
 }
 
@@ -290,10 +355,18 @@ a:focus-visible {
 
 @media (prefers-reduced-motion: reduce) {
   .top-nav a,
+  .lang-toggle,
   .project-item h3 a,
   .connect-links-row > a,
   .connect-links a,
   .project-item a {
     transition: none;
+  }
+  
+  .intro,
+  .section {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
   }
 }
