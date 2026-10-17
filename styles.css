@@ -1,12 +1,9 @@
 :root {
   --bg: #131416;
   --bg-rgb: 19, 20, 22;
-  --bg-soft: #1a1b1f;
   --text-main: #f3f3f3;
   --text-muted: #9a9ea6;
-  --rule: rgba(255, 255, 255, 0.14);
   --accent: #eaecef;
-  --squircle-radius: 18px;
   --motion-duration: 0.2s;
   --motion-ease: cubic-bezier(0.22, 0.61, 0.36, 1);
   --container: 760px;
@@ -89,6 +86,17 @@ body::before {
   margin-bottom: 2.2rem;
 }
 
+.top-nav a,
+.project-item h3 a,
+.connect-links a,
+.connect-links-row > a,
+.error-links a {
+  display: inline-flex;
+  align-items: center;
+  min-inline-size: 44px;
+  min-block-size: 44px;
+}
+
 .top-nav a {
   color: var(--text-muted);
   text-decoration: none;
@@ -102,19 +110,7 @@ body::before {
 }
 
 .lang-toggle {
-  background: none;
-  border: none;
-  padding: 0;
   margin-left: auto;
-  color: var(--text-muted);
-  font-family: "Ubuntu", sans-serif;
-  font-size: 0.92rem;
-  cursor: pointer;
-  transition: color var(--motion-duration) var(--motion-ease);
-}
-
-.lang-toggle:hover {
-  color: var(--text-main);
 }
 
 .intro {
@@ -227,7 +223,7 @@ h1 .handle {
 .project-item h3 a,
 .connect-links-row > a,
 .connect-links a,
-.contact-primary {
+.error-links a {
   color: var(--accent);
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
@@ -240,7 +236,7 @@ h1 .handle {
 .project-item h3 a:hover,
 .connect-links-row > a:hover,
 .connect-links a:hover,
-.contact-primary:hover {
+.error-links a:hover {
   color: #ffffff;
   border-color: rgba(255, 255, 255, 0.5);
   transform: translateY(-1px);
@@ -249,7 +245,7 @@ h1 .handle {
 .project-item h3 a:active,
 .connect-links-row > a:active,
 .connect-links a:active,
-.contact-primary:active {
+.error-links a:active {
   transform: translateY(0) scale(0.985);
 }
 
@@ -257,14 +253,10 @@ h1 .handle {
   max-width: 30ch;
 }
 
-.stack {
+.project-item .stack {
   margin-top: 0.82rem;
   color: var(--text-muted);
   font-size: 0.95rem;
-}
-
-.project-item-empty {
-  min-height: 7.4rem;
 }
 
 .connect-links-row {
@@ -282,8 +274,14 @@ h1 .handle {
   margin: 0;
 }
 
-a:focus-visible,
-button:focus-visible {
+.error-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+a:focus-visible {
   outline: 2px solid #dfe2e6;
   outline-offset: 2px;
 }
@@ -297,7 +295,6 @@ button:focus-visible {
 .site-footer-inner {
   text-align: center;
   color: var(--text-muted);
-  font-family: "Ubuntu Mono", monospace;
   font-size: 1rem;
   letter-spacing: 0.08em;
 }
@@ -363,20 +360,28 @@ button:focus-visible {
   }
 }
 
-@media (prefers-reduced-data: reduce) {
-  .page {
-    background: var(--bg);
-  }
-}
-
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
   .top-nav a,
-  .lang-toggle,
   .project-item h3 a,
   .connect-links-row > a,
   .connect-links a,
-  .project-item a {
+  .error-links a {
     transition: none;
+  }
+
+  .project-item h3 a:hover,
+  .project-item h3 a:active,
+  .connect-links-row > a:hover,
+  .connect-links-row > a:active,
+  .connect-links a:hover,
+  .connect-links a:active,
+  .error-links a:hover,
+  .error-links a:active {
+    transform: none;
   }
 
   .intro,

@@ -9,45 +9,70 @@
       name="description"
       content="Portfolio of Dmitry Kostromitsky"
     />
+    <link rel="canonical" href="https://m1tyarch.github.io/" />
+    <link rel="alternate" hreflang="en" href="https://m1tyarch.github.io/" />
+    <link rel="alternate" hreflang="ru" href="https://m1tyarch.github.io/ru/" />
+    <link rel="alternate" hreflang="x-default" href="https://m1tyarch.github.io/" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "@id": "https://m1tyarch.github.io/#person",
+        "name": "Dmitry Kostromitsky",
+        "alternateName": [
+          "Дмитрий Костромицкий",
+          "m1tyarch"
+        ],
+        "url": "https://m1tyarch.github.io/",
+        "sameAs": [
+          "https://github.com/m1tyarch",
+          "https://www.instagram.com/m1tyarch",
+          "https://x.com/m1tyarch",
+          "https://t.me/m1tyarch"
+        ]
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&family=Ubuntu+Mono:wght@400;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;500;700&amp;display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="styles.css" />
+    <script src="language.js" defer></script>
   </head>
   <body>
     <main class="page">
       <div class="container">
         <header class="intro">
           <nav class="top-nav" aria-label="Section navigation">
-            <a href="#building" data-i18n="nav_building">Building</a>
-            <a href="#projects" data-i18n="nav_projects">Projects</a>
-            <a href="#now" data-i18n="nav_now">Now</a>
-            <a href="#connect" data-i18n="nav_connect">Connect</a>
-            <button class="lang-toggle" id="langToggle" aria-label="Toggle language">Ru</button>
+            <a href="#building">Building</a>
+            <a href="#projects">Projects</a>
+            <a href="#now">Now</a>
+            <a href="#connect">Connect</a>
+            <a class="lang-toggle" href="ru/" hreflang="ru" lang="ru"
+              aria-label="RU — переключить на русский" data-language-link>RU</a>
           </nav>
 
-          <h1><span data-i18n="name">Dmitry Kostromitsky</span> <span class="handle">@m1tyarch</span></h1>
-          <p class="lead" data-i18n="lead">
+          <h1><span>Dmitry Kostromitsky</span> <span class="handle">@m1tyarch</span></h1>
+          <p class="lead">
             Software Engineering. I work on projects that interest me and turn my own ideas into working products.
           </p>
         </header>
 
         <section class="section" id="building" aria-labelledby="building-title">
-          <h2 id="building-title" data-i18n="building_title">Building</h2>
-          <p data-i18n="building_desc">
+          <h2 id="building-title">Building</h2>
+          <p>
             I work on speed, efficiency, and performance across different products. Beyond that, I care about usability and think through every detail down to the smallest level.
           </p>
           <ul class="meta-list" aria-label="Core stack">
-            <li><span data-i18n="lang_label">Languages</span><strong>Python, C++</strong></li>
-            <li><span data-i18n="tools_label">Tools &amp; OS</span><strong>Linux, Git</strong></li>
+            <li><span>Languages</span><strong>Python, C++</strong></li>
+            <li><span>Tools &amp; OS</span><strong>Linux, Git</strong></li>
           </ul>
         </section>
 
         <section class="section" id="projects" aria-labelledby="projects-title">
-          <h2 id="projects-title" data-i18n="projects_title">Projects</h2>
+          <h2 id="projects-title">Projects</h2>
 
           <div class="projects-grid">
             <article class="project-item">
@@ -60,8 +85,8 @@
                   >DotDoctor</a
                 >
               </h3>
-              <p data-i18n="project1_desc">A Linux CLI tool.</p>
-              <p class="stack" data-i18n="project1_stack">Stack: Python</p>
+              <p>A Linux CLI tool.</p>
+              <p class="stack">Stack: Python</p>
             </article>
 
             <article class="project-item">
@@ -74,26 +99,26 @@
                   >DrawAPoint</a
                 >
               </h3>
-              <p data-i18n="project2_desc">Drawing application for the browser.</p>
-              <p class="stack" data-i18n="project2_stack">Stack: JavaScript</p>
+              <p>Drawing application for the browser.</p>
+              <p class="stack">Stack: JavaScript</p>
             </article>
 
             <article class="project-item">
-              <h3 data-i18n="project3_title">Upcoming Project</h3>
-              <p data-i18n="project3_desc">Future Project Slot.</p>
+              <h3>Upcoming Project</h3>
+              <p>Future Project Slot.</p>
             </article>
           </div>
         </section>
 
         <section class="section" id="now" aria-labelledby="now-title">
-          <h2 id="now-title" data-i18n="now_title">Now & About</h2>
-          <p data-i18n="now_desc">
+          <h2 id="now-title">Now & About</h2>
+          <p>
             Right now I'm trying to balance school with projects that interest me. Enjoying photography and sports. I also love IDM music.
           </p>
         </section>
 
         <section class="section" id="connect" aria-labelledby="connect-title">
-          <h2 id="connect-title" data-i18n="connect_title">Connect</h2>
+          <h2 id="connect-title">Connect</h2>
 
           <div class="connect-links-row">
             <p class="connect-links">
@@ -109,7 +134,7 @@
               <a href="https://github.com/m1tyarch" target="_blank" rel="noopener noreferrer"
                 >GitHub</a
               >
-              <a href="https://x.com/m1tyarch" target="_blank" rel="noopener noreferrer"
+              <a href="https://x.com/m1tyarch" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)"
                 >𝕏</a
               >
             </p>
@@ -122,77 +147,8 @@
       </div>
     </main>
 
-    <footer class="site-footer" aria-label="Footer year">
+    <footer class="site-footer">
       <div class="site-footer-inner">2026</div>
     </footer>
-
-    <script>
-      const translations = {
-        en: {
-          nav_building: "Building",
-          nav_projects: "Projects",
-          nav_now: "Now",
-          nav_connect: "Connect",
-          name: "Dmitry Kostromitsky",
-          lead: "Software Engineering. I work on projects that interest me and turn my own ideas into working products.",
-          building_title: "Building",
-          building_desc: "I work on speed, efficiency, and performance across different products. Beyond that, I care about usability and think through every detail down to the smallest level.",
-          lang_label: "Languages",
-          tools_label: "Tools & OS",
-          projects_title: "Projects",
-          project1_desc: "A Linux CLI tool.",
-          project1_stack: "Stack: Python",
-          project2_desc: "Drawing application for the browser.",
-          project2_stack: "Stack: JavaScript",
-          project3_title: "Upcoming Project",
-          project3_desc: "Future Project Slot.",
-          now_title: "Now & About",
-          now_desc: "Right now I'm trying to balance school with projects that interest me. Enjoying photography and sports. I also love IDM music.",
-          connect_title: "Connect"
-        },
-        ru: {
-          nav_building: "Разработка",
-          nav_projects: "Проекты",
-          nav_now: "Сейчас",
-          nav_connect: "Контакты",
-          name: "Дмитрий Костромицкий",
-          lead: "Программная инженерия. Работаю над интересными мне проектами и превращаю собственные идеи в рабочие продукты.",
-          building_title: "Разработка",
-          building_desc: "Работаю над скоростью, эффективностью и производительностью в разных продуктах. Помимо этого, уделяю внимание удобству и прорабатываю каждую деталь до мелочей.",
-          lang_label: "Языки",
-          tools_label: "Инструменты и ОС",
-          projects_title: "Проекты",
-          project1_desc: "CLI-инструмент для Linux.",
-          project1_stack: "Стек: Python",
-          project2_desc: "Приложение для рисования в браузере.",
-          project2_stack: "Стек: JavaScript",
-          project3_title: "Будущий проект",
-          project3_desc: "Слот для будущего проекта.",
-          now_title: "Сейчас и о себе",
-          now_desc: "Сейчас стараюсь совмещать учёбу с интересными мне проектами. Увлекаюсь фотографией и спортом. Люблю IDM-музыку.",
-          connect_title: "Контакты"
-        }
-      };
-
-      let currentLang = "en";
-      const langToggle = document.getElementById("langToggle");
-
-      function setLanguage(lang) {
-        currentLang = lang;
-        document.documentElement.lang = lang;
-        langToggle.textContent = lang === "en" ? "Ru" : "Eng";
-
-        document.querySelectorAll("[data-i18n]").forEach((element) => {
-          const key = element.getAttribute("data-i18n");
-          if (translations[lang][key]) {
-            element.textContent = translations[lang][key];
-          }
-        });
-      }
-
-      langToggle.addEventListener("click", () => {
-        setLanguage(currentLang === "en" ? "ru" : "en");
-      });
-    </script>
   </body>
 </html>
