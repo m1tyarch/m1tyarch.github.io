@@ -6,6 +6,15 @@
     <meta name="theme-color" content="#131416" />
     <meta name="robots" content="noindex" />
     <title>Page not found — Dmitry Kostromitsky</title>
+    <script>
+      try {
+        if (localStorage.getItem("portfolio-language") === "ru") {
+          document.documentElement.setAttribute("data-lang-pending", "");
+        }
+      } catch {
+        // Ignore storage errors and render the English fallback.
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -28,5 +37,9 @@
         </header>
       </div>
     </main>
+
+    <footer class="site-footer">
+      <div class="site-footer-inner" id="footer-text">© 2026 Dmitry Kostromitsky</div>
+    </footer>
   </body>
 </html>

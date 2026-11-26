@@ -15,14 +15,24 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+html[data-lang-pending] body {
+  visibility: hidden;
 }
 
 body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
+  min-height: 100dvh;
   background: var(--bg);
   color: var(--text-main);
-  font-family: "Ubuntu", sans-serif;
+  font-family: "Ubuntu", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   line-height: 1.7;
 }
 
@@ -36,14 +46,14 @@ body {
   color: var(--text-main);
 }
 
-/* Градиент для ПК */
+/* Top scroll fade for desktop */
 body::before {
   content: "";
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  height: 64px;
+  height: 56px;
   pointer-events: none;
   z-index: 20;
   background: linear-gradient(
@@ -76,14 +86,16 @@ body::before {
 }
 
 .page {
-  padding: 52px 0 96px;
+  flex: 1;
+  padding: 64px 0 96px;
 }
 
 .top-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-bottom: 2.2rem;
+  align-items: center;
+  gap: 0.75rem 1.35rem;
+  margin-bottom: 2.6rem;
 }
 
 .top-nav a,
@@ -91,17 +103,34 @@ body::before {
 .connect-links a,
 .connect-links-row > a,
 .error-links a {
+  position: relative;
   display: inline-flex;
   align-items: center;
+}
+
+/* Extend touch target to 44x44px without shifting visual alignment */
+.top-nav a::after,
+.project-item h3 a::after,
+.connect-links a::after,
+.connect-links-row > a::after,
+.error-links a::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   min-inline-size: 44px;
   min-block-size: 44px;
+  inline-size: 100%;
+  block-size: 100%;
 }
 
 .top-nav a {
   color: var(--text-muted);
   text-decoration: none;
-  font-family: "Ubuntu", sans-serif;
+  font-family: inherit;
   font-size: 0.92rem;
+  line-height: 1.3;
   transition: color var(--motion-duration) var(--motion-ease);
 }
 
@@ -110,11 +139,11 @@ body::before {
 }
 
 .lang-toggle {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 .intro {
-  padding: 8px 0 10px;
+  padding: 0 0 10px;
   opacity: 0;
   animation: fadeInUp 0.7s var(--motion-ease) forwards;
 }
@@ -124,7 +153,12 @@ h2,
 h3 {
   margin: 0;
   line-height: 1.12;
-  font-family: "Ubuntu", sans-serif;
+  font-family: inherit;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
 }
 
 h1 {
@@ -137,7 +171,7 @@ h1 .handle {
   color: var(--text-muted);
   font-size: 0.58em;
   font-weight: 500;
-  margin-left: 0.32em;
+  margin-inline-start: 0.32em;
 }
 
 .lead {
@@ -150,8 +184,7 @@ h1 .handle {
 .section {
   padding: 40px 0 10px;
   margin-top: 34px;
-  content-visibility: auto;
-  contain-intrinsic-size: 1px 520px;
+  scroll-margin-top: 64px;
   opacity: 0;
   animation: fadeInUp 0.7s var(--motion-ease) forwards;
 }
@@ -170,6 +203,10 @@ h1 .handle {
 
 .section:nth-of-type(4) {
   animation-delay: 0.6s;
+}
+
+.section:nth-of-type(n + 5) {
+  animation-delay: 0.75s;
 }
 
 .section h2 {
@@ -192,7 +229,8 @@ h1 .handle {
 
 .meta-list li {
   display: flex;
-  gap: 0.8rem;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.8rem;
   align-items: baseline;
   justify-content: space-between;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -208,6 +246,11 @@ h1 .handle {
   color: var(--text-muted);
 }
 
+.meta-list strong {
+  margin-inline-start: auto;
+  text-align: end;
+}
+
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -217,7 +260,7 @@ h1 .handle {
 
 .project-item h3 {
   font-size: clamp(1.05rem, 2.5vw, 1.28rem);
-  margin-bottom: 0.55rem;
+  margin-bottom: 0.75rem;
 }
 
 .project-item h3 a,
@@ -226,6 +269,8 @@ h1 .handle {
 .error-links a {
   color: var(--accent);
   text-decoration: none;
+  line-height: 1.3;
+  padding-bottom: 1px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.22);
   transition:
     color var(--motion-duration) var(--motion-ease),
@@ -270,33 +315,47 @@ h1 .handle {
 .connect-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem 1.15rem;
+  align-items: center;
+  gap: 0.85rem 1.35rem;
   margin: 0;
+}
+
+.social-icon-link {
+  height: calc(1.3em + 1px);
+}
+
+.x-icon {
+  width: 0.9em;
+  height: 0.9em;
+  display: block;
+  flex-shrink: 0;
 }
 
 .error-links {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1rem 1.35rem;
   margin-top: 1.5rem;
 }
 
 a:focus-visible {
   outline: 2px solid #dfe2e6;
-  outline-offset: 2px;
+  outline-offset: 4px;
+  border-radius: 4px;
 }
 
 .site-footer {
   width: 100%;
   border-top: 0.5px solid rgba(255, 255, 255, 0.06);
-  padding: 0.82rem 1rem 1rem;
+  padding: 0.85rem 1rem 1rem;
 }
 
 .site-footer-inner {
   text-align: center;
   color: var(--text-muted);
-  font-size: 1rem;
-  letter-spacing: 0.08em;
+  font-size: 0.9rem;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 760px) {
@@ -305,7 +364,7 @@ a:focus-visible {
   }
 
   .top-nav {
-    margin-bottom: 1.6rem;
+    margin-bottom: 2rem;
   }
 
   h1 .handle {
@@ -316,24 +375,26 @@ a:focus-visible {
   .section {
     padding-top: 30px;
     margin-top: 26px;
+    scroll-margin-top: 24px;
   }
 
-  /* Горизонтальный скролл проектов для мобильных */
+  /* Horizontal snap carousel for projects on mobile */
   .projects-grid {
     display: flex;
     flex-direction: row;
     overflow-x: auto;
     gap: 1.4rem;
-    padding-bottom: 1rem;
+    padding: 12px 0 1rem;
+    margin-top: -12px;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     -webkit-overflow-scrolling: touch;
   }
 
-  /* Невидимое пространство справа для правильного выравнивания 3-го проекта */
+  /* Trailing space so the final card snaps cleanly to the start edge */
   .projects-grid::after {
     content: "";
-    flex: 0 0 20%;
+    flex: 0 0 22%;
   }
 
   .projects-grid::-webkit-scrollbar {
@@ -341,7 +402,7 @@ a:focus-visible {
   }
 
   .project-item {
-    flex: 0 0 80%;
+    flex: 0 0 78%;
     scroll-snap-align: start;
   }
 
@@ -354,7 +415,7 @@ a:focus-visible {
     flex-direction: column;
   }
 
-  /* Отключение верхнего градиента на мобильных */
+  /* Disable top fade gradient on mobile */
   body::before {
     display: none;
   }

@@ -14,22 +14,37 @@
     if (preferredLanguage === "ru") {
       document.documentElement.lang = "ru";
       document.title = "Страница не найдена — Дмитрий Костромицкий";
-      document.getElementById("error-title").textContent = "Страница не найдена";
-      document.getElementById("error-description").textContent =
-        "Проверьте адрес или вернитесь в портфолио.";
-      document.getElementById("error-navigation").setAttribute("aria-label", "Навигация");
 
+      const errorTitle = document.getElementById("error-title");
+      const errorDescription = document.getElementById("error-description");
+      const errorNav = document.getElementById("error-navigation");
       const homeLink = document.getElementById("home-link");
-      homeLink.href = "/ru/";
-      homeLink.hreflang = "ru";
-      homeLink.textContent = "Вернуться в портфолио";
-
       const alternateLink = document.querySelector("[data-language-link]");
-      alternateLink.href = "/";
-      alternateLink.hreflang = "en";
-      alternateLink.lang = "en";
-      alternateLink.textContent = "Portfolio in English";
+      const footerText = document.getElementById("footer-text");
+
+      if (errorTitle) errorTitle.textContent = "Страница не найдена";
+      if (errorDescription) errorDescription.textContent = "Проверьте адрес или вернитесь в портфолио.";
+      if (errorNav) errorNav.setAttribute("aria-label", "Навигация");
+
+      if (homeLink) {
+        homeLink.href = "/ru/";
+        homeLink.hreflang = "ru";
+        homeLink.textContent = "Вернуться в портфолио";
+      }
+
+      if (alternateLink) {
+        alternateLink.href = "/";
+        alternateLink.hreflang = "en";
+        alternateLink.lang = "en";
+        alternateLink.textContent = "Portfolio in English";
+      }
+
+      if (footerText) {
+        footerText.textContent = "© 2026 Дмитрий Костромицкий";
+      }
     }
+
+    document.documentElement.removeAttribute("data-lang-pending");
   } else {
     // The URL selects the language. A saved preference must not redirect a
     // visitor who deliberately opens the English or Russian page.
@@ -44,8 +59,8 @@
   if (!languageLink) return;
 
   const updateLanguageLink = () => {
-    const target = new URL(languageLink.href);
-    target.hash = window.location.hash;
+    const target = new URL(languageLink.href, window.location.href);
+    target.hash = errorPage ? "" : window.location.hash;
     languageLink.href = target.href;
   };
 
